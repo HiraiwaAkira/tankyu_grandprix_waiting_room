@@ -51,7 +51,7 @@
     .line-bottom { bottom: 40px; }
 
     /* ── 中央テキストエリア ── */
-    .center-block {
+     .center-block {
       grid-row: 3;
       text-align: center;
       z-index: 5;
@@ -59,7 +59,7 @@
     }
 
     .label {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Noto Serif JP', serif;
       font-size: clamp(10px, 1.2vw, 14px);
       letter-spacing: .4em;
       color: var(--accent);
@@ -68,22 +68,24 @@
     }
 
     .title {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+      font-weight: 800;
       font-size: clamp(48px, 8vw, 96px);
       letter-spacing: .12em;
-      line-height: 1;
+      line-height: 1.1;
       color: var(--fg);
+      text-shadow: 0 2px 24px rgba(201,168,76,.3);
       opacity: 0;
       animation: fadeUp .9s .5s ease forwards;
     }
 
     .subtitle {
       margin-top: 16px;
-      font-family: 'Bebas Neue', sans-serif; ;
-      font-size: clamp(20px, 1.1vw, 13px);
-      font-weight: 300;
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(16px, 1.6vw, 18px);
+      font-weight: 400;
       letter-spacing: .25em;
-      color: var(--fg);
+      color: var(--accent);
       opacity: 0;
       animation: fadeUp .8s .8s ease forwards;
     }
@@ -242,4 +244,5 @@
 </script>
 </body>
 </html>
+
 
