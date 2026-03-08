@@ -9,18 +9,20 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-     --bg: #f0f0ee;
-      --fg: #12213a;
-      --accent: #2a4a7f;
-      --dim: #c0bdb8;
+      --bg: #0a0a0a;
+      --fg: #f0e6c8;
+      --gold: #f8bc17;
+      --gold-light: #83754a;
+      --gold-dark: #8a6e2a;
+      --dim: #1e1a10;
       --strip-h: 180px;
     }
 
-    html, body {
+   html, body {
       width: 100%; height: 100%;
       background: var(--bg);
       color: var(--fg);
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Noto Serif JP', serif;
       overflow: hidden;
     }
 
@@ -42,14 +44,21 @@
       opacity: .5;
     }
 
-    /* ── 細いライン装飾 ── */
-   # .line-top, .line-bottom {
-      position: fixed; left: 48px; right: 48px; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--dim) 20%, var(--dim) 80%, transparent);
+  .line-top, .line-bottom {
+      position: fixed; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold-dark) 15%, var(--gold-light) 50%, var(--gold-dark) 85%, transparent);
     }
-    .line-top    { top: 40px; }
-    .line-bottom { bottom: 40px; }
+    .line-top    { top: 0; }
+    .line-bottom { bottom: 0; }
 
+    /* ── ゴールドの細いサブライン ── */
+    .line-top::after, .line-bottom::after {
+      content: '';
+      position: absolute; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dark) 15%, var(--gold) 50%, var(--gold-dark) 85%, transparent);
+    }
+    .line-top::after    { top: 6px; }
+    .line-bottom::after { bottom: 6px; }
     /* ── 中央テキストエリア ── */
     .center-block {
       grid-row: 3;
@@ -68,28 +77,34 @@
     }
 
     .title {
-      font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+      font-family: 'BIZ UDPGothic', 'Noto Serif JP', serif;
       font-weight: 800;
       font-size: clamp(48px, 8vw, 96px);
       letter-spacing: .12em;
       line-height: 1.1;
       color: var(--fg);
-      text-shadow: 0 2px 24px rgba(201,168,76,.3);
+      text-shadow:
+        0 0 40px rgba(255, 187, 0, 0.585),
+        0 2px 4px rgba(0,0,0,.8),
+        1px 1px 0 #8888886e, -1px 1px 0 #888,
+        1px -1px 0 #888, -1px -1px 0 #888;
       opacity: 0;
       animation: fadeUp .9s .5s ease forwards;
     }
 
-    .subtitle {
-      margin-top: 16px;
+   .subtitle {
+      margin-top: 20px;
       font-family: 'Noto Serif JP', serif;
       font-size: clamp(16px, 1.6vw, 18px);
       font-weight: 400;
       letter-spacing: .25em;
-      color: var(--accent);
+      color: var(--gold);
+      text-shadow:
+        1px 1px 0 #888, -1px 1px 0 #888,
+        1px -1px 0 #888, -1px -1px 0 #888;
       opacity: 0;
       animation: fadeUp .8s .8s ease forwards;
     }
-    
     /* ── ローディングドット ── */
     .dots {
       display: inline-flex; gap: 8px;
@@ -117,24 +132,42 @@
     .strip-wrap.top    { grid-row: 2; }
     .strip-wrap.bottom { grid-row: 4; }
 
+     /* ストリップ上下のゴールドライン */
+    .strip-wrap.top {
+      border-top: 1px solid var(--gold-dark);
+      border-bottom: 1px solid var(--gold-dark);
+    }
+    .strip-wrap.bottom {
+      border-top: 1px solid var(--gold-dark);
+      border-bottom: 1px solid var(--gold-dark);
+    }
+
     .strip {
       display: flex; gap: 12px;
       height: 100%;
       width: max-content;
     }
 
-    .strip-wrap.top    .strip { animation: scrollLeft  57s linear infinite; }
-    .strip-wrap.bottom .strip { animation: scrollRight 53s linear infinite; }
+    .strip-wrap.top    .strip { animation: scrollLeft  56s linear infinite; }
+    .strip-wrap.bottom .strip { animation: scrollRight 56s linear infinite; }
 
     .card {
       flex-shrink: 0;
       width: calc(var(--strip-h) * 16 / 9);
       height: var(--strip-h);
-      border-radius: 6px;
+      border-radius: 4px;
       overflow: hidden;
       background: var(--dim);
-      border: 1px solid #222;
+      border: 1px solid var(--gold-dark);
       position: relative;
+    }
+
+    .card img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      background: #ffffff;
+      display: block;
+      opacity: 0;
     }
 
     /* ダミー画像：グラデーションで番号表示 */
@@ -244,6 +277,3 @@
 </script>
 </body>
 </html>
-
-
-
